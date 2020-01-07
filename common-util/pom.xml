@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-util</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -43,5 +44,9 @@
             <version>${jackson-annotations.verion}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 
 </project>

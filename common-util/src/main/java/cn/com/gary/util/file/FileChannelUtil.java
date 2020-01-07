@@ -30,16 +30,17 @@ public class FileChannelUtil {
     }
 
     public static void main(String[] args) {
-        String testPath = "test.txts";
+        final String root = "/data/common-util/";
+        String testPath = root + "test.txts";
         String ioOutputPath = "io.txts";
         String nioOutputPath = "nio.txts";
         String nioTransferOutputPath = "nioTransfer.txts";
         String nioFilesPath = "nioFiles.txts";
 
-        String ioMultiThreadWritePath = "multiThreadIoWritePath.txts";
-        String nioMultiThreadNioWritePath = "multiThreadNioWritePath.txts";
-        String iomultiThreadIoOpenWritePath = "multiThreadIoOpenWritePath.txts";
-        String nioMultiThreadNioOpenWritePath = "multiThreadNioOpenWritePath.txts";
+        String ioMultiThreadWritePath = root + "multiThreadIoWritePath.txts";
+        String nioMultiThreadNioWritePath = root + "multiThreadNioWritePath.txts";
+        String iomultiThreadIoOpenWritePath = root + "multiThreadIoOpenWritePath.txts";
+        String nioMultiThreadNioOpenWritePath = root + "multiThreadNioOpenWritePath.txts";
 
         Runtime runtime = Runtime.getRuntime();
         int availableProcessors = runtime.availableProcessors();
@@ -57,16 +58,16 @@ public class FileChannelUtil {
                 createFile(testPath, NUM_KB_ARR[j]);
                 calcCostTime("createFile\t\t" + numKBStr);
                 calcCostTime(null);
-                copyByIO(testPath, bufferSize + "_" + ioOutputPath);
+                copyByIO(testPath, root + bufferSize + "_" + ioOutputPath);
                 calcCostTime("copyByIO\t\t" + numKBStr);
                 calcCostTime(null);
-                copyByNIO(testPath, bufferSize + "_" + nioOutputPath);
+                copyByNIO(testPath, root + bufferSize + "_" + nioOutputPath);
                 calcCostTime("copyByNIO\t\t" + numKBStr);
                 calcCostTime(null);
-                copyByNIOTransfer(testPath, bufferSize + "_" + nioTransferOutputPath);
+                copyByNIOTransfer(testPath, root + bufferSize + "_" + nioTransferOutputPath);
                 calcCostTime("copyByNIOTransfer\t" + numKBStr);
                 calcCostTime(null);
-                copyByFiles(testPath, bufferSize + "_" + nioFilesPath);
+                copyByFiles(testPath, root + bufferSize + "_" + nioFilesPath);
                 calcCostTime("copyByFiles\t\t" + numKBStr);
             }
         }
