@@ -4,7 +4,6 @@ import cn.com.gary.thread.bank.Bank;
 import cn.com.gary.thread.bank.PersonA;
 import cn.com.gary.thread.bank.PersonB;
 import cn.com.gary.thread.demo.join.MyJoinThread;
-import cn.com.gary.thread.demo.pool.ThreadPool;
 import cn.com.gary.thread.demo.print.MyPrintThread;
 import cn.com.gary.thread.demo.yield.MyYieldThread;
 import cn.com.gary.thread.running.Animal;
@@ -21,22 +20,23 @@ import lombok.extern.slf4j.Slf4j;
  * @create 2020-01-07 10:25
  **/
 @Slf4j
-public class EntryPoint {
+public class ThreadTest {
     public static void main(String[] args) throws Throwable {
         log.info("***********Multiple thread test***********");
-        testSaleTicket();
+//        testSaleTicket();
+//
+//        testBank();
+//
+//        testRunning();
+//
+//        testJoin();
+//
+//        testYield();
+//
+//        testPrintThread();
+//
+//        ThreadPool.testThreadPool();
 
-        testBank();
-
-        testRunning();
-
-        testJoin();
-
-        testYield();
-
-        testPrintThread();
-
-        ThreadPool.testThreadPool();
     }
 
     private static void testSaleTicket() {
