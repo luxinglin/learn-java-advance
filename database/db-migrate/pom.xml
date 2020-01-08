@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.12.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+
+    <artifactId>database-db-migrate</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.flywaydb.version>4.2.0</org.flywaydb.version>
+        <mysql.connector.version>5.1.45</mysql.connector.version>
+        <lombok.version>1.18.0</lombok.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <db.url>jdbc:mysql://127.0.0.1:3306/db-master?useUnicode=true&amp;characterEncoding=utf-8</db.url>
+                <db.username>root</db.username>
+                <db.password>123456</db.password>
+                <db.schema>db-master</db.schema>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${org.flywaydb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>4.2.0</version>
+                <configuration>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>${db.url}</url>
+                    <user>${db.username}</user>
+                    <password>${db.password}</password>
+                    <!-- 设置接受flyway进行版本管理的数据库，多个数据库以逗号分隔 -->
+                    <schemas>${db.schema}</schemas>
+                    <!-- 设置存放flyway metadata数据的表名 -->
+                    <table>flyway_schema_version</table>
+                    <!-- 设置flyway扫描sql升级脚本、java升级脚本的目录路径或包路径 -->
+                    <locations>
+                        <location>filesystem:src/main/resources/db/migrations</location>
+                    </locations>
+                    <!-- 设置sql脚本文件的编码 -->
+                    <encoding>UTF-8</encoding>
+                    <outOfOrder>true</outOfOrder>
+                    <placeholderPrefix>#[</placeholderPrefix>
+                    <placeholderSuffix>]</placeholderSuffix>
+                    <placeholders>
+                        <schemaName>${db.schema}</schemaName>
+                    </placeholders>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-core</artifactId>
+                        <version>${org.flywaydb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.connector.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
