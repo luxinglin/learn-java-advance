@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.gary.database.system.dao.mapper.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.com.gary.database.system.dao.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+    </resultMap>
+
+    <select id="pageProduct" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT id, `name`, price
+        from product
+        where 1 = 1
+
+        <if test="params!=null and params.record != null">
+            <if test="params.record.name != null and params.record.name != ''">
+                <bind name="namePattern" value="'%' + params.record.name + '%'"/>
+                and `name` LIKE #{namePattern}
+            </if>
+        </if>
+
+        <if test="params!=null and params.orderByClause != null and params.orderByClause !=''">
+            order by ${params.orderByClause}
+        </if>
+
+    </select>
+
+</mapper>
