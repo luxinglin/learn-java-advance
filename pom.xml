@@ -5,13 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.com.gary</groupId>
-    <artifactId>learn-java-advance</artifactId>
+    <artifactId>java-root</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>multi-thread</module>
         <module>common-util</module>
+        <module>code-generator</module>
+        <module>multi-thread</module>
+        <module>database</module>
+        <module>common-pojo</module>
+        <module>common-biz</module>
     </modules>
 
     <properties>
@@ -24,6 +28,7 @@
         <lombok.version>1.18.0</lombok.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <jackson-annotations.verion>2.9.5</jackson-annotations.verion>
+
     </properties>
 
     <dependencies>
@@ -39,13 +44,14 @@
             <version>${slf4j-api.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j-api.version}</version>
             <scope>compile</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>

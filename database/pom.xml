@@ -9,16 +9,14 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
-    <artifactId>basic-multi-thread</artifactId>
+    <modules>
+        <module>db-migrate</module>
+        <module>multi-datasource</module>
+    </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>cn.com.gary</groupId>
-            <artifactId>tool-common-util</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <artifactId>database</artifactId>
 
 
 </project>
