@@ -1,4 +1,4 @@
-package cn.com.gary.database.common.config.api;
+package cn.com.gary.database.common.config.doc;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +29,16 @@ public class SwaggerConfig {
                 .groupName("1.系统管理模块")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cn.com.gary.database.system.api"))
+                .paths(PathSelectors.any()).build();
+    }
+
+    @Bean
+    public Docket createProductRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .groupName("2.产品管理模块")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("cn.com.gary.database.product.api"))
                 .paths(PathSelectors.any()).build();
     }
 

@@ -1,6 +1,6 @@
-package cn.com.gary.database.system.dao.mapper;
+package cn.com.gary.database.product.dao.mapper;
 
-import cn.com.gary.database.system.dao.entity.Product;
+import cn.com.gary.database.product.dao.entity.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
