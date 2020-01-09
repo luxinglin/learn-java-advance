@@ -15,5 +15,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ProductService extends IService<Product> {
 
+    /**
+     * 高级分页
+     *
+     * @param page
+     * @param product
+     * @return
+     */
     IPage<Product> advPage(Page<Product> page, Product product);
 }

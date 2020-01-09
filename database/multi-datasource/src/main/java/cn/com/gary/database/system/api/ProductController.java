@@ -4,7 +4,7 @@ import cn.com.gary.database.system.dao.entity.Product;
 import cn.com.gary.database.system.service.ProductService;
 import cn.com.gary.model.constants.MessageConstants;
 import cn.com.gary.model.pojo.RestResult;
-import cn.com.gary.util.page.PageUtil;
+import cn.com.gary.database.common.util.MpPlusPageUtil;
 import cn.com.gary.util.web.WebUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -62,7 +62,7 @@ public class ProductController {
                                   @RequestParam(value = "desc", defaultValue = "", required = false) String desc) {
         //分页基本信息
         Page<Product> page = new Page<>(current, size);
-        PageUtil.getInstance().init(page, null, asc, desc);
+        MpPlusPageUtil.getInstance().init(page, null, asc, desc);
 
         IPage<Product> entityIPage = productService.advPage(page, entity);
         return new RestResult(entityIPage);
