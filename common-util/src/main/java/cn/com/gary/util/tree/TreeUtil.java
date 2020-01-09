@@ -1,5 +1,6 @@
 package cn.com.gary.util.tree;
 
+import cn.com.gary.util.ToyUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -13,13 +14,21 @@ import java.util.List;
  **/
 @Slf4j
 public class TreeUtil {
+    private TreeUtil() {
+    }
+
     /**
      * 两层循环实现建树
      *
      * @param treeNodes 传入的树节点列表
+     * @param root
      * @return
      */
     public static <T extends TreeNode> List<T> build(List<T> treeNodes, Object root) {
+        if (ToyUtil.listEmpty(treeNodes)) {
+            return treeNodes;
+        }
+
         List<T> trees = new ArrayList<>();
         for (T treeNode : treeNodes) {
             if (root.equals(treeNode.getParentId())) {
@@ -42,9 +51,14 @@ public class TreeUtil {
      * 使用递归方法建树
      *
      * @param treeNodes
+     * @param root
      * @return
      */
     public static <T extends TreeNode> List<T> buildByRecursive(List<T> treeNodes, Object root) {
+        if (ToyUtil.listEmpty(treeNodes)) {
+            return treeNodes;
+        }
+
         List<T> trees = new ArrayList<>();
         for (T treeNode : treeNodes) {
             if (root.equals(treeNode.getParentId())) {

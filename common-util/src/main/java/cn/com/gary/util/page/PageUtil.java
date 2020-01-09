@@ -112,12 +112,15 @@ public class PageUtil {
             final String enName = timeRangeParam.getEnName();
             if (ToyUtil.nullOrEmpty(enName)) {
                 it.remove();
+                continue;
             }
             if (timeRangeParam.getStart() == null && timeRangeParam.getEnd() == null) {
                 it.remove();
+                continue;
             }
             if (!validDateClazzField(cls, enName)) {
                 it.remove();
+                continue;
             }
 
             prepareTimeRange(timeRangeParam);

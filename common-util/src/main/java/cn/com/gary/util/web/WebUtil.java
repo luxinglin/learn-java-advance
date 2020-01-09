@@ -94,7 +94,7 @@ public class WebUtil {
     /**
      * 新增时添加用户以及当前时间信息(For Activiti)
      */
-    private static <T> void prepareInsertParams(T obj, String user) {
+    public static <T> void prepareInsertParams(T obj, String user) {
         if (user != null && !StringUtils.EMPTY.equals(user)) {
             // 创建人
             invokeSet(obj, CREATED_BY_PROP, user);
