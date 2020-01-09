@@ -24,14 +24,20 @@ public class RestResult<T> {
     private T data;
 
     /**
+     * 构造函数1，无参
+     */
+    public RestResult() {
+        success();
+    }
+
+    /**
      * 构造函数1，只提供成功消息
      *
      * @param message
      */
     public RestResult(String message) {
-        this.code = RestConst.HttpConst.OK.getCode();
+        success();
         this.message = message;
-        this.status = Status.TRUE.val;
     }
 
     /**
@@ -40,8 +46,7 @@ public class RestResult<T> {
      * @param data
      */
     public RestResult(T data) {
-        this.code = RestConst.HttpConst.OK.getCode();
-        this.status = Status.TRUE.val;
+        success();
         this.data = data;
     }
 
@@ -62,6 +67,11 @@ public class RestResult<T> {
         this.status = status;
         this.message = message;
         this.data = data;
+    }
+
+    private void success() {
+        this.code = RestConst.HttpConst.OK.getCode();
+        this.status = Status.TRUE.val;
     }
 
     @Override
