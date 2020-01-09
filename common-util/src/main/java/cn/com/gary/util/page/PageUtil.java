@@ -1,17 +1,12 @@
-package cn.com.gary.database.common.util;
+package cn.com.gary.util.page;
 
-import cn.com.gary.model.constants.CommonConstants;
-import cn.com.gary.model.constants.PageConstant;
 import cn.com.gary.model.exception.BizException;
 import cn.com.gary.model.page.TimeRangeParam;
 import cn.com.gary.util.ToyUtil;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.util.ReflectionUtils;
 
-import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,6 +23,13 @@ import java.util.List;
  **/
 @Slf4j
 public class PageUtil {
+    /**
+     * SQL保留字（sql语句中的非法字符）
+     */
+    private final static String[] SQL_RESERVED_WORDS = new String[]{
+            "master", "truncate", "insert", "select", "delete", "update", "declare", "alter", "drop"
+    };
+
     private PageUtil() {
     }
 
@@ -58,55 +60,6 @@ public class PageUtil {
         return columns.toArray(str);
     }
 
-    /**
-     * 从分页参数里面获取并构造排序子句
-     *
-     * @param page 分页参数
-     * @return
-     */
-    public static String constructOrderClause(Page page) {
-        if (page == null) {
-            return null;
-        }
-
-        StringBuffer stringBuffer = new StringBuffer();
-        if (page.ascs() != null && page.ascs().length > 0) {
-            List<String> ascList = new ArrayList<>();
-            for (String asc : page.ascs()) {
-                ascList.add(sqlInject(asc));
-            }
-
-            for (String asc : ascList) {
-                if (ToyUtil.nullOrEmpty(asc)) {
-                    continue;
-                }
-
-                if (!stringBuffer.toString().isEmpty()) {
-                    stringBuffer.append(CommonConstants.COMMA);
-                }
-                stringBuffer.append(ToyUtil.underScoreName(asc).toUpperCase()).append(PageConstant.ASC);
-            }
-        }
-
-        if (page.descs() != null && page.descs().length > 0) {
-            List<String> descList = new ArrayList<>();
-            for (String desc : page.descs()) {
-                descList.add(sqlInject(desc));
-            }
-            for (String desc : descList) {
-                if (ToyUtil.nullOrEmpty(desc)) {
-                    continue;
-                }
-
-                if (!stringBuffer.toString().isEmpty()) {
-                    stringBuffer.append(CommonConstants.COMMA);
-                }
-                stringBuffer.append(ToyUtil.underScoreName(desc).toUpperCase()).append(PageConstant.DESC);
-            }
-        }
-        log.debug("orderByClause = {}", stringBuffer.toString());
-        return stringBuffer.toString();
-    }
 
     /**
      * 构造时间段参数
@@ -143,10 +96,12 @@ public class PageUtil {
      * @param timeRangeParams 时间参数列表
      * @return
      */
-    public static void executeTimeRangeStatement(@NotNull Class cls, List<TimeRangeParam> timeRangeParams) {
+    public static void executeTimeRangeStatement(Class cls, List<TimeRangeParam> timeRangeParams) {
         if (cls == null) {
             timeRangeParams = null;
+            return;
         }
+
         if (ToyUtil.listEmpty(timeRangeParams)) {
             return;
         }
@@ -169,28 +124,6 @@ public class PageUtil {
         }
     }
 
-    /**
-     * 构造分页查询返回结果
-     *
-     * @param pageInfo
-     * @param page
-     * @param records
-     * @return
-     */
-    public static IPage getIPageResult(com.github.pagehelper.Page<Object> pageInfo,
-                                       Page page, List records) {
-        IPage result = new Page<>();
-        if (pageInfo != null) {
-            result.setTotal(pageInfo.getTotal());
-            result.setPages(pageInfo.getPages());
-        }
-        if (page != null) {
-            result.setCurrent(page.getCurrent());
-            result.setSize(page.getSize());
-        }
-        result.setRecords(records);
-        return result;
-    }
 
     /**
      * SQL注入过滤
@@ -198,7 +131,7 @@ public class PageUtil {
      * @param str 待验证的字符串
      * @author qiujiaming
      */
-    private static String sqlInject(String str) {
+    public static String sqlInject(String str) {
         if (StringUtils.isBlank(str)) {
             return null;
         }
@@ -209,11 +142,9 @@ public class PageUtil {
         str = StringUtils.replace(str, ";", "");
         str = StringUtils.replace(str, "\\", "");
 
-        //非法字符
-        final String[] sqlReservedWords = {"master", "truncate", "insert", "select", "delete", "update", "declare", "alter", "drop"};
 
         //判断是否包含非法字符
-        for (String reservedWord : sqlReservedWords) {
+        for (String reservedWord : SQL_RESERVED_WORDS) {
             boolean containKeyword = StringUtils.containsIgnoreCase(str, reservedWord);
             if (containKeyword) {
                 throw new BizException("包含非法字符");
@@ -258,6 +189,8 @@ public class PageUtil {
     }
 
     /**
+     * 构造时间段参数过来条件语句
+     *
      * @param timeRangeParam
      */
     private static void prepareTimeRange(TimeRangeParam timeRangeParam) {
