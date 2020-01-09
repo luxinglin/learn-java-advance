@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Slf4j
 public class DynamicDataSourceAspect {
-    private final String[] QUERY_PREFIX = {"select", "list", "get", "find", "page"};
+    private final String[] QUERY_PREFIX = {"select", "list", "get", "find", "page", "query"};
 
     @Pointcut("execution( * cn.com.gary.database.*.dao.mapper.*.*(..))")
     public void daoAspect() {
