@@ -9,7 +9,7 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <property name="javaFileEncoding" value="UTF-8"/>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
-        <commentGenerator type="cn.gary.generator.mybatis.comment.CustomCommentGenerator">
+        <commentGenerator type="cn.com.gary.generator.mybatis.comment.CustomCommentGenerator">
             <property name="suppressDate" value="false"/>
             <property name="suppressAllComments" value="false"/>
         </commentGenerator>
@@ -44,7 +44,7 @@
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table domainObjectName="MeetingSeenRecord" tableName="bs_meeting_seen_record">
+        <table domainObjectName="Product" tableName="product">
             <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

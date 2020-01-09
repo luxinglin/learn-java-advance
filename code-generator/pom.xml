@@ -11,13 +11,21 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tool-code-generator</artifactId>
-    <version>1.0.0</version>
+    <groupId>cn.com.gary</groupId>
+    <artifactId>core-code-generator</artifactId>
+    <version>1.0.0-RELEASE</version>
     <packaging>jar</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
         <mysql.connector.version>5.1.45</mysql.connector.version>
-        <mybatis.version>3.2.6</mybatis.version>
+        <mybatis.version>3.5.3</mybatis.version>
     </properties>
 
     <dependencies>
@@ -70,7 +78,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>1.2.2</version>
+            <version>2.0.3</version>
         </dependency>
 
         <dependency>
@@ -83,6 +91,17 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
