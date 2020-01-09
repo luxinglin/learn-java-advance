@@ -7,13 +7,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.12.RELEASE</version>
+        <version>2.1.6.RELEASE</version>
         <relativePath/>
     </parent>
 
     <groupId>cn.com.gary</groupId>
     <artifactId>database-db-migrate</artifactId>
-    <version>1.0.0</version>
+    <version>1.0-SNAPSHOT</version>
 
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.flywaydb.version>4.2.0</org.flywaydb.version>
         <mysql.connector.version>5.1.45</mysql.connector.version>
-        <lombok.version>1.18.0</lombok.version>
+        <lombok.version>1.18.8</lombok.version>
     </properties>
 
     <profiles>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.21</version>
+            <version>5.1.45</version>
         </dependency>
 
         <dependency>
@@ -62,7 +62,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.18</version>
         </dependency>
 
         <dependency>
