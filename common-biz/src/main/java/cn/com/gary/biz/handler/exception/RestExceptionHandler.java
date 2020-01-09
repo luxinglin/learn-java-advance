@@ -1,4 +1,4 @@
-package cn.com.gary.biz.exception.handle;
+package cn.com.gary.biz.handler.exception;
 
 
 import cn.com.gary.model.constants.MessageConstants;

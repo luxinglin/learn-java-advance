@@ -1,4 +1,4 @@
-package cn.com.gary.database.common.util;
+package cn.com.gary.biz.util;
 
 import cn.com.gary.model.constants.CommonConstants;
 import cn.com.gary.model.constants.PageConstant;
@@ -21,19 +21,44 @@ import java.util.List;
  * @create 2019-09-26 16:11
  **/
 @Slf4j
-public class MpPlusPageUtil<T> {
+public class MpPlusUtil<T> {
 
-    private static MpPlusPageUtil instance;
+    private static MpPlusUtil instance;
 
-    private MpPlusPageUtil() {
+    private MpPlusUtil() {
     }
 
-    public static MpPlusPageUtil getInstance() {
+    public static MpPlusUtil getInstance() {
         if (instance == null) {
-            instance = new MpPlusPageUtil();
+            instance = new MpPlusUtil();
         }
 
         return instance;
+    }
+
+    /**
+     * 基础参数构造类
+     *
+     * @param entity
+     * @return
+     */
+    public QueryWrapper<T> initQueryWrapper(T entity) {
+        QueryWrapper<T> queryWrapper = new QueryWrapper<>();
+        return queryWrapper;
+    }
+
+    /**
+     * 分页查询基础参数构造
+     *
+     * @param page
+     * @param asc
+     * @param desc
+     * @return
+     */
+    public QueryWrapper initPage(Page<T> page,
+                                 String asc,
+                                 String desc) {
+        return initPage(page, null, asc, desc);
     }
 
     /**
@@ -45,9 +70,9 @@ public class MpPlusPageUtil<T> {
      * @param desc   降序排序字段
      * @return
      */
-    public QueryWrapper init(Page<T> page, T entity,
-                             String asc,
-                             String desc) {
+    public QueryWrapper initPage(Page<T> page, T entity,
+                                 String asc,
+                                 String desc) {
         if (asc != null && !asc.isEmpty()) {
             page.setAsc(asc.split(CommonConstants.COMMA));
         }
@@ -56,9 +81,7 @@ public class MpPlusPageUtil<T> {
         }
 
         //携带参数到service
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.setEntity(entity);
-
+        QueryWrapper queryWrapper = initQueryWrapper(entity);
         return queryWrapper;
     }
 
