@@ -50,10 +50,6 @@ public class DataSourceConfig {
             Statement statement = connection.createStatement();
             // 创建数据库
             statement.executeUpdate("create database if not exists `" + datasourceName + "` default character set utf8mb4 COLLATE utf8mb4_general_ci");
-            statement.executeUpdate("create database if not exists `db-slave-alpha` default character set utf8mb4 COLLATE utf8mb4_general_ci");
-            statement.executeUpdate("create database if not exists `db-slave-beta` default character set utf8mb4 COLLATE utf8mb4_general_ci");
-            statement.executeUpdate("create database if not exists `db-slave-gamma` default character set utf8mb4 COLLATE utf8mb4_general_ci");
-            statement.close();
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
