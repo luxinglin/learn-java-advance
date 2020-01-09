@@ -9,10 +9,12 @@ package cn.com.gary.model.constants;
 public interface RestConst {
 
     enum HttpConst implements RestEnum {
-        OK(200, "200"), CREATED(201, "CREATED"),
-        BAD_REQUEST(400, "400"), ERROR_PASSWORD(420, "420"),
-
-        Unauthorized(401, "Unauthorized"), Forbidden(403, "Forbidden");
+        OK(200, "200"),
+        CREATED(201, "CREATED"),
+        BAD_REQUEST(400, "400"),
+        ERROR_PASSWORD(420, "420"),
+        Unauthorized(401, "Unauthorized"),
+        Forbidden(403, "Forbidden");
 
         private int code;
         private String type;
@@ -54,7 +56,7 @@ public interface RestConst {
         /**
          * 远程调用失败.
          */
-        RPC_ERROR(10003, "RPCerror"),
+        RPC_ERROR(10003, "RPCError"),
         /**
          * 参数错误
          */
