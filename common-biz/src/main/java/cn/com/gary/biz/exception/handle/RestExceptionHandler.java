@@ -1,9 +1,9 @@
 package cn.com.gary.biz.exception.handle;
 
 
-import cn.com.gary.model.exception.BizException;
 import cn.com.gary.model.constants.MessageConstants;
 import cn.com.gary.model.constants.RestConst;
+import cn.com.gary.model.exception.BizException;
 import cn.com.gary.model.pojo.RestResult;
 import cn.com.gary.util.web.WebUtil;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,9 +21,8 @@ import java.lang.reflect.Field;
  * Rest exception handler 类.
  * 统一异常Handle，对外唯一异常出口
  *
- * @author Chaohong.Mao
+ * @author luxinglin
  */
-
 @RestControllerAdvice
 @Slf4j
 public class RestExceptionHandler {
@@ -97,7 +96,5 @@ public class RestExceptionHandler {
         RestResult tResult = new RestResult(BizException.class.cast(ex).getRestEnum(), RestResult.Status.FAIL, ex.getMessage());
         return tResult;
     }
-
-
 }
 
