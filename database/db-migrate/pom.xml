@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-
+    <groupId>cn.com.gary</groupId>
     <artifactId>database-db-migrate</artifactId>
     <version>1.0.0</version>
 
