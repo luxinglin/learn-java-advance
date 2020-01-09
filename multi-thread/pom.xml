@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.com.gary</groupId>
-            <artifactId>tool-common-util</artifactId>
+            <artifactId>core-common-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
