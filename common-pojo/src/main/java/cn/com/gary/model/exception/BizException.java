@@ -3,6 +3,9 @@ package cn.com.gary.model.exception;
 
 import cn.com.gary.model.constants.RestConst;
 
+/**
+ * @author pai
+ */
 public class BizException extends RuntimeException {
 
     /**
