@@ -9,12 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tool-common-util</artifactId>
+    <artifactId>core-common-util</artifactId>
     <packaging>jar</packaging>
 
     <properties>
-        <tool-common-pojo.version>1.0-SNAPSHOT</tool-common-pojo.version>
-        <tool-common-biz.version>1.0-SNAPSHOT</tool-common-biz.version>
+        <core-common-pojo.version>1.0-SNAPSHOT</core-common-pojo.version>
     </properties>
 
     <dependencies>
@@ -32,6 +31,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-annotations.verion}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -47,12 +52,24 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson-annotations.verion}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.3.9.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -68,21 +85,24 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>cn.com.gary</groupId>
-            <artifactId>tool-common-pojo</artifactId>
-            <version>${tool-common-pojo.version}</version>
+            <artifactId>core-common-pojo</artifactId>
+            <version>${core-common-pojo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-aop</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-beans</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-context</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>cn.com.gary</groupId>-->
-<!--            <artifactId>tool-common-biz</artifactId>-->
-<!--            <version>${tool-common-biz.version}</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
