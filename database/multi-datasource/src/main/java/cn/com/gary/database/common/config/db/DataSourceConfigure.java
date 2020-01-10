@@ -1,12 +1,17 @@
 package cn.com.gary.database.common.config.db;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.baomidou.mybatisplus.autoconfigure.SpringBootVFS;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import org.apache.ibatis.plugin.Interceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -23,6 +28,19 @@ import java.util.Map;
  **/
 @Configuration
 public class DataSourceConfigure {
+    private final PaginationInterceptor paginationInterceptor;
+    private final PerformanceInterceptor performanceInterceptor;
+    private final SqlExplainInterceptor sqlExplainInterceptor;
+
+    @Autowired
+    public DataSourceConfigure(PaginationInterceptor paginationInterceptor,
+                               PerformanceInterceptor performanceInterceptor,
+                               SqlExplainInterceptor sqlExplainInterceptor) {
+        this.paginationInterceptor = paginationInterceptor;
+        this.performanceInterceptor = performanceInterceptor;
+        this.sqlExplainInterceptor = sqlExplainInterceptor;
+    }
+
     /**
      * master DataSource
      *
@@ -113,6 +131,10 @@ public class DataSourceConfigure {
         MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         // 配置数据源，此处配置为关键配置，如果没有将 dynamicDataSource 作为数据源则不能实现切换
         sqlSessionFactoryBean.setDataSource(dynamicDataSource());
+        Interceptor[] interceptors = new Interceptor[]{paginationInterceptor, performanceInterceptor, sqlExplainInterceptor};
+        sqlSessionFactoryBean.setVfs(SpringBootVFS.class);
+        sqlSessionFactoryBean.setPlugins(interceptors);
+        sqlSessionFactoryBean.setFailFast(true);
         return sqlSessionFactoryBean;
     }
 

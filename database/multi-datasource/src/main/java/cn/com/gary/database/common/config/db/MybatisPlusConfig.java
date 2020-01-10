@@ -2,6 +2,7 @@ package cn.com.gary.database.common.config.db;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +14,8 @@ import org.springframework.context.annotation.Configuration;
  * @author luxinglin
  */
 @Configuration
-@MapperScan(basePackages = {"cn.com.gary.database.**.dao.mapper"})
+@MapperScan("cn.com.gary.database.**.dao.mapper")
 public class MybatisPlusConfig {
-
     /**
      * 分页
      *
@@ -23,7 +23,7 @@ public class MybatisPlusConfig {
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+        return new PaginationInterceptor().setDialectType("mysql");
     }
 
     /**
@@ -32,5 +32,11 @@ public class MybatisPlusConfig {
     @Bean
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
+    }
+
+
+    @Bean
+    public SqlExplainInterceptor sqlExplainInterceptor(){
+        return new SqlExplainInterceptor();
     }
 }
