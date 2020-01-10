@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.gary.database.system.dao.mapper.SysLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.com.gary.database.system.dao.entity.SysLog">
+        <id column="ID" property="id"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="IP" property="ip"/>
+        <result column="OPERATE_DT" property="operateDt"/>
+        <result column="SUCCESS" property="success"/>
+        <result column="FAILED_REASON" property="failedReason"/>
+        <result column="CLIENT_INFO" property="clientInfo"/>
+        <result column="OPERATE_MODULE" property="operateModule"/>
+        <result column="OPERATE_DESC" property="operateDesc"/>
+        <result column="CREATED_BY" property="createdBy"/>
+        <result column="CREATED_DT" property="createdDt"/>
+        <result column="ACCOUNT" property="account"/>
+        <result column="REAL_NAME" property="realName"/>
+    </resultMap>
+
+</mapper>
