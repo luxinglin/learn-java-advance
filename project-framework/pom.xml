@@ -15,6 +15,7 @@
         <module>db-migrate</module>
         <module>multi-datasource</module>
         <module>single-datasource</module>
+        <module>gateway</module>
     </modules>
 
     <artifactId>project-framework</artifactId>
