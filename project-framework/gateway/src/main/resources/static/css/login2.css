@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    font: normal normal 12px/1 'microsoft yahei';
+    overflow: hidden;
+}
+
+body, div, input, form {
+    box-sizing: border-box;
+}
+
+.error {
+    color: #f00;
+}
+
+#particle {
+    overflow: hidden;
+}
+
+.login {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+}
+
+.login h1 {
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 10px;
+    color: #0f88eb;
+    margin-bottom: 50px;
+}
+
+input {
+    display: block;
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    outline: none;
+    font-size: 16px;
+    margin: 10px 0;
+    margin-left: 10%;
+}
+
+input[type=submit] {
+    cursor: pointer;
+    background-color: #0f88eb;
+    border: none;
+    color: #fff;
+    letter-spacing: 3px;
+
+&
+:hover {
+    background-color: #55ABED;
+}
+
+}
+.loginMsg {
+    padding: 10px 5px;
+    display: none;
+    font-size: 16px;
+}

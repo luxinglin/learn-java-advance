@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>登陆</title>
+    <link rel="stylesheet" href="../css/login.css"></link>
+</head>
+<body>
+<div id="login-box">
+    <div id="title">
+        <p>盘古数据中心监控平台</p>
+    </div>
+    <form action="">
+        <input type="hidden" name="csrfToken" th:value="${_csrf.token}" id="csrfToken"></input>
+        <input type="hidden" name="redirect" th:value="${redirect}" id="redirect"></input>
+        <input type="text" id="username" placeholder="用户名"></input>
+        <input type="password" id="password" placeholder="密码"></input>
+        <p class="loginMsg error"></p>
+        <button id="submit" value="登陆">登陆</button>
+    </form>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+
+    $('form input:first-child').focus();
+
+    $('form').on('submit', function (event) {
+        event.preventDefault();
+        var username = $('#username').val().trim();
+        var password = $('#password').val().trim();
+        if (username === '') {
+            //alert('请输入用户名');
+            $(".loginMsg").text("请输入用户名").show();
+            return;
+        }
+        if (password === '') {
+            //alert('请输入密码');
+            $(".loginMsg").text("请输入密码").show();
+            return;
+        }
+        $('input[type=submit]').val('登录中...');
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: {
+                username: username,
+                password: password
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("X-CSRF-TOKEN", $("#csrfToken").val());
+            },
+            contentType: 'application/x-www-form-urlencoded'
+        }).then(function (res) {
+            console.log(res);
+            $('input[type=submit]').val('登陆');
+            res = JSON.parse(res);
+            if (false === res.result) {
+                $(".loginMsg").text(res.info).show();
+            } else if (true === res.result) {
+                var redirect = $("#redirect").val();
+                if (redirect != '') {
+                    window.location.href = redirect;
+                } else {
+                    window.location.href = "/";
+                }
+
+            }
+        }, error => {
+            $('input[type=submit]').val('登陆');
+            $(".loginMsg").text(error).show();
+        });
+    });
+</script>
+</body>
+</html>

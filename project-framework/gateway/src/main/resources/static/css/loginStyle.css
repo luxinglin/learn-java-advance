@@ -1,0 +1,238 @@
+/* login */
+.login {
+    background-color: #101539;
+    background-image: url('../images/login_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 1440px auto;
+    background-position: center top;
+}
+
+.login_box {
+    margin-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    width: 746px;
+    min-width: 746px;
+    height: 577px;
+    min-height: 577px;
+    background-image: url('../images/loginbg2.png');
+    background-size: 746px 577px;
+}
+
+.login_box .username input, .login_box .psw input {
+    border: none;
+    width: 300px;
+    background-color: transparent;
+    font-size: 14px;
+    color: #FFF;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px;
+    text-indent: 30px;
+    border-bottom: 1px solid #bebebe;
+}
+
+.login_box .btn button {
+    display: block;
+    width: 310px;
+    height: 40px;
+    line-height: 40px;
+    color: #FFF;
+    text-align: center;
+    background-color: #e30c21;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    letter-spacing: 5px;
+}
+
+.login_box .username {
+    padding-top: 250px;
+    padding-left: 230px;
+}
+
+.login_box .psw {
+    padding-top: 10px;
+    padding-left: 230px;
+}
+
+.login_box .btn {
+    padding-top: 40px;
+    padding-left: 230px;
+}
+
+.login_box .remember {
+    padding-top: 30px;
+    padding-left: 242px;
+    font-size: 14px;
+}
+
+.login_box .remember label,
+.login_box .remember label input {
+    cursor: pointer;
+    vertical-align: middle;
+    line-height: 16px;
+    color: #999;
+}
+
+.login_box .remember label input {
+    height: 16px;
+}
+
+.login_box .username input {
+    background-image: url('../images/icon-user.png');
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 10px center;
+}
+
+.login_box .psw input {
+    background-image: url('../images/icon-psw.png');
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 10px center;
+}
+
+#login-title {
+    display: none;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: red;
+}
+
+/* media */
+
+@media screen and (orientation: portrait) {
+}
+
+/* 窗口宽度>800,设计宽度=800 */
+@media screen and (max-width: 800px) {
+    .login {
+        background-color: #0a73ab;
+        background-image: url('../images/login_bg.jpg');
+        background-repeat: no-repeat;
+        background-size: auto 600px;
+        background-position: center top;
+    }
+
+    .login_box {
+        margin-top: 80px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 0;
+        width: 600px;
+        min-width: 600px;
+        background-image: url('../images/loginbg2.png');
+        background-size: 600px auto;
+        background-repeat: no-repeat;
+    }
+
+    .login_box .username {
+        padding-top: 170px;
+        padding-left: 150px;
+    }
+
+    .login_box .psw {
+        padding-top: 10px;
+        padding-left: 150px;
+    }
+
+    .login_box .btn {
+        padding-top: 20px;
+        padding-left: 150px;
+    }
+
+    .login_box .remember {
+        padding-top: 20px;
+        padding-left: 163px;
+        font-size: 14px;
+    }
+}
+
+/* 窗口宽度>1600,设计宽度=1920 */
+@media screen and (min-width: 1600px) {
+    .login {
+        background-color: #0a73ab;
+        background-image: url('../images/login_bg.jpg');
+        background-repeat: no-repeat;
+        background-size: 1920px 1080px;
+        background-position: center top;
+    }
+
+    .login_box {
+        margin-top: 100px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 0;
+        width: 995px;
+        height: 743px;
+        background-image: url('../images/loginbg2.png');
+        background-size: 995px 743px;
+    }
+
+    .login_box .username input, .login_box .psw input {
+        border: none;
+        width: 410px;
+        background-color: transparent;
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        text-indent: 60px;
+        border-bottom: 1px solid #bebebe;
+    }
+
+    .login_box .btn a, .login_box .btn button {
+        display: block;
+        width: 420px;
+        height: 60px;
+        line-height: 60px;
+        color: #FFF;
+        text-align: center;
+        background-color: #e30c21;
+        font-size: 24px;
+        border-radius: 4px;
+    }
+
+    .login_box span {
+        display: block;
+        line-height: 26px;
+        font-size: 20px;
+    }
+
+    .login_box .username {
+        padding-top: 290px;
+        padding-left: 292px;
+    }
+
+    .login_box .psw {
+        padding-top: 30px;
+        padding-left: 292px;
+    }
+
+    .login_box .remember {
+        padding-top: 30px;
+        padding-left: 292px;
+        font-size: 16px;
+    }
+
+    .login_box .btn {
+        padding-top: 40px;
+        padding-left: 292px;
+    }
+
+    .login_box .username input {
+        background-image: url('../images/icon-user.png');
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: 30px 30px;
+    }
+
+    .login_box .psw input {
+        background-image: url('../images/icon-psw.png');
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: 30px 30px;
+    }
+}
