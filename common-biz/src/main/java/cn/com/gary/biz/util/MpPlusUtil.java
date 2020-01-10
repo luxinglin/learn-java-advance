@@ -2,13 +2,17 @@ package cn.com.gary.biz.util;
 
 import cn.com.gary.model.constants.CommonConstants;
 import cn.com.gary.model.constants.PageConstant;
+import cn.com.gary.util.ReflectionUtils;
 import cn.com.gary.util.ToyUtil;
 import cn.com.gary.util.page.PageUtil;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +48,43 @@ public class MpPlusUtil<T> {
      */
     public QueryWrapper<T> initQueryWrapper(T entity) {
         QueryWrapper<T> queryWrapper = new QueryWrapper<>();
+        if (entity == null) {
+            return queryWrapper;
+        }
+
+        try {
+            Field[] fields = entity.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if ("serialVersionUID".equals(field.getName())) {
+                    continue;
+                }
+
+                Object val = ReflectionUtils.getFieldValue(entity, field.getName());
+                if (val == null) {
+                    continue;
+                }
+
+                TableId id = field.getAnnotation(TableId.class);
+                if (id != null) {
+                    queryWrapper.eq(id.value(), val);
+                    continue;
+                }
+
+                TableField column = field.getAnnotation(TableField.class);
+                if (column != null) {
+                    Class type = field.getType();
+                    if (String.class.equals(type)) {
+                        if (!val.toString().isEmpty()) {
+                            queryWrapper.like(column.value(), val);
+                        }
+                    } else {
+                        queryWrapper.eq(column.value(), val);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            log.error("initQueryWrapper error: {}", ex.getMessage());
+        }
         return queryWrapper;
     }
 

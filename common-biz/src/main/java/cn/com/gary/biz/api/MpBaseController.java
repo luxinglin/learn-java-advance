@@ -114,9 +114,10 @@ public class MpBaseController<BizService extends IService, Entity, DTO> extends 
     }
 
     @ApiOperation(value = "记录列表条件查询", notes = "根据条件进行查询")
-    @GetMapping(value = "/list")
+    @ApiImplicitParam(paramType = "body", name = "entity", value = "查询条件", dataType = "Entity")
+    @PostMapping(value = "/list")
     @ResponseBody
-    public RestResult list(Entity entity) {
+    public RestResult list(@RequestBody Entity entity) {
         RestResult restResult = new RestResult();
         QueryWrapper queryWrapper = MpPlusUtil.getInstance().initQueryWrapper(entity);
         restResult.setData(bizService.list(queryWrapper));
@@ -125,14 +126,15 @@ public class MpBaseController<BizService extends IService, Entity, DTO> extends 
 
     @ApiOperation(value = "记录单表分页条件查询", notes = "根据条件进行分页查询-单表")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "current", value = "当前页面"),
-            @ApiImplicitParam(paramType = "query", name = "size", value = "页大小"),
+            @ApiImplicitParam(paramType = "body", name = "entity", value = "查询条件", dataType = "Entity"),
+            @ApiImplicitParam(paramType = "query", name = "current", value = "当前页面", dataType = "Long"),
+            @ApiImplicitParam(paramType = "query", name = "size", value = "页大小", dataType = "Long"),
             @ApiImplicitParam(paramType = "query", name = "asc", value = "升序字段", defaultValue = "", dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "desc", value = "降序字段", defaultValue = "", dataType = "String")
     })
-    @GetMapping(value = "/page")
+    @PostMapping(value = "/page")
     @ResponseBody
-    public RestResult<IPage> page(Entity entity,
+    public RestResult<IPage> page(@RequestBody Entity entity,
                                   @RequestParam(value = "current") Long current,
                                   @RequestParam(value = "size") Long size,
                                   @RequestParam(value = "asc", defaultValue = "", required = false) String asc,
@@ -151,14 +153,15 @@ public class MpBaseController<BizService extends IService, Entity, DTO> extends 
 
     @ApiOperation(value = "记录跨表分页条件查询", notes = "根据条件进行分页查询-多表级联")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "current", value = "当前页面"),
-            @ApiImplicitParam(paramType = "query", name = "size", value = "页大小"),
+            @ApiImplicitParam(paramType = "body", name = "entity", value = "查询条件", dataType = "DTO"),
+            @ApiImplicitParam(paramType = "query", name = "current", value = "当前页面", dataType = "Long"),
+            @ApiImplicitParam(paramType = "query", name = "size", value = "页大小", dataType = "Long"),
             @ApiImplicitParam(paramType = "query", name = "asc", value = "升序字段", defaultValue = "", dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "desc", value = "降序字段", defaultValue = "", dataType = "String")
     })
-    @GetMapping(value = "/adv-page")
+    @PostMapping(value = "/adv-page")
     @ResponseBody
-    public RestResult<IPage> advPage(DTO entity,
+    public RestResult<IPage> advPage(@RequestBody DTO entity,
                                      @RequestParam(value = "current") Long current,
                                      @RequestParam(value = "size") Long size,
                                      @RequestParam(value = "asc", defaultValue = "", required = false) String asc,
