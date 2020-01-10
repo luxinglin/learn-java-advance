@@ -10,12 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>common-pojo</module>
-        <module>common-util</module>
-        <module>common-biz</module>
-        <module>code-generator</module>
-        <module>multi-thread</module>
-        <module>database</module>
+        <module>core-common</module>
+        <module>java-basic</module>
+        <module>project-framework</module>
     </modules>
 
     <properties>
