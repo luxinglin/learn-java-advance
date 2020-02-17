@@ -11,6 +11,7 @@
 
     <modules>
         <module>multi-thread</module>
+        <module>java-basic-mq</module>
     </modules>
 
     <properties>

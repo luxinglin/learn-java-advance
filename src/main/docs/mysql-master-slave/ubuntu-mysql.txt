@@ -1,0 +1,10 @@
+#master configure
+grant replication slave on *.* to 'rep'@'%' identified by 'rep';
+flush privileges;
+show master status;
+
+#slave configure
+reset slave;
+change master to master_host='192.168.0.100',master_port=3307,master_user='rep',master_password='rep';
+start slave;
+show slave status;
