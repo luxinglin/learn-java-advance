@@ -1,9 +1,9 @@
 package cn.com.gary.mq.rabbit.comsumer;
 
+import cn.com.gary.mq.rabbit.RabbitMqMessageConsumer;
 import cn.com.gary.mq.rabbit.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.QueueingConsumer;
 
 public class Consumer4DirectExchange {
 
@@ -27,15 +27,8 @@ public class Consumer4DirectExchange {
         channel.queueBind(queueName, exchangeName, routingKey);
 
         //durable 是否持久化消息
-        QueueingConsumer consumer = new QueueingConsumer(channel);
+        RabbitMqMessageConsumer defaultConsumer = new RabbitMqMessageConsumer(channel);
         //参数：队列名称、是否自动ACK、Consumer
-        channel.basicConsume(queueName, true, consumer);  
-        //循环获取消息  
-        while(true){  
-            //获取消息，如果没有消息，这一步将会一直阻塞  
-            QueueingConsumer.Delivery delivery = consumer.nextDelivery();
-            String msg = new String(delivery.getBody());    
-            System.out.println("收到消息：" + msg);  
-        } 
+        channel.basicConsume(queueName, true, defaultConsumer);
     }
 }

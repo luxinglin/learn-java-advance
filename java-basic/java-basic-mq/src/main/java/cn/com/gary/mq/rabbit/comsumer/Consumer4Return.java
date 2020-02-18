@@ -1,9 +1,9 @@
 package cn.com.gary.mq.rabbit.comsumer;
 
+import cn.com.gary.mq.rabbit.RabbitMqMessageConsumer;
 import cn.com.gary.mq.rabbit.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.QueueingConsumer;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -30,15 +30,10 @@ public class Consumer4Return {
         channel.queueBind(queueName, exchangeName, routingKey);
 
 
-        QueueingConsumer queueingConsumer = new QueueingConsumer(channel);
+        RabbitMqMessageConsumer queueingConsumer = new RabbitMqMessageConsumer(channel);
 
         channel.basicConsume(queueName, true, queueingConsumer);
 
-        while (true) {
-            QueueingConsumer.Delivery delivery = queueingConsumer.nextDelivery();
-            String msg = new String(delivery.getBody());
-            System.err.println("消费者: " + msg);
-        }
     }
 
 }
