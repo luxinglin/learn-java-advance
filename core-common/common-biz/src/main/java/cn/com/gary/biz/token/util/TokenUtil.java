@@ -23,11 +23,32 @@ public class TokenUtil {
     final static String UN_KNOW = "unknown";
     protected static Logger logger = LoggerFactory.getLogger(TokenUtil.class);
 
+    /**
+     * token generator
+     *
+     * @param tokenParam
+     * @return
+     * @throws InvalidKeyException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws NoSuchPaddingException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     * @throws IOException
+     */
     public static String genToken(Map<String, String> tokenParam) throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
-        return Des3Util.genEncodeToken(tokenParam.get(USER_ID), tokenParam.get(ORG_ID), tokenParam.get(IP));
+        return Des3Util.genToken(tokenParam.get(USER_ID), tokenParam.get(ORG_ID), tokenParam.get(IP));
     }
 
-
+    /**
+     * token valid
+     *
+     * @param token
+     * @param userId
+     * @param orgIdId
+     * @param ip
+     * @return
+     */
     public static ValidResult validateToken(String token, String userId, String orgIdId, String ip) {
         ValidResult validResult = new ValidResult();
         validResult.setValid(false);
