@@ -1,0 +1,11 @@
+server:
+  servlet:
+    context-path:  /neo4j
+  port: 9991
+
+spring:
+  data:
+    neo4j:
+      urls: neo4j://127.0.0.1:8687,neo4j://127.0.0.1:7687,neo4j://127.0.0.1:9687
+      username: neo4j
+      password: 123456

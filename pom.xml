@@ -13,6 +13,7 @@
         <module>core-common</module>
         <module>java-basic</module>
         <module>project-framework</module>
+        <module>spring-boots</module>
     </modules>
 
     <properties>
