@@ -23,7 +23,7 @@
         <jackson-annotations.verion>2.9.10</jackson-annotations.verion>
         <spring-context.version>4.3.9.RELEASE</spring-context.version>
         <commons-lang.version>2.6</commons-lang.version>
-        <commons-beanutils.version>1.8.3</commons-beanutils.version>
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
     </properties>
 
     <dependencies>
