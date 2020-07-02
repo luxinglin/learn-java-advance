@@ -21,7 +21,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.flywaydb.version>4.2.0</org.flywaydb.version>
-        <mysql.connector.version>5.1.45</mysql.connector.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
         <lombok.version>1.18.8</lombok.version>
     </properties>
 
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
+            <version>8.0.16</version>
         </dependency>
 
         <dependency>
