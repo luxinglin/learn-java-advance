@@ -1,0 +1,16 @@
+server:
+  port: 9994
+  servlet:
+    context-path: /redis
+spring:
+  redis:
+    database: 0
+    password:
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    sentinel:
+      master: mymaster
+      nodes: 10.200.132.171:26380,10.200.132.171:26381,10.200.132.171:26382
