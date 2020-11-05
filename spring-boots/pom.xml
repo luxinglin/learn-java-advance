@@ -13,6 +13,9 @@
 
     <modules>
         <module>spring-boot-data-neo4j</module>
+        <module>spring-boot-data-redis</module>
+        <module>spring-boot-data-cluster-redis</module>
+        <module>spring-boot-data-sentinel-redis</module>
     </modules>
 
     <properties>
