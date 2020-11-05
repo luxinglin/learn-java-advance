@@ -1,4 +1,4 @@
-package cn.com.gary.dataredis.api;
+package cn.com.gary.dataredis.cluster.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

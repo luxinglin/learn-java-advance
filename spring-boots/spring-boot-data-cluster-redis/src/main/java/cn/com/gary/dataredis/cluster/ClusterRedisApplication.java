@@ -1,4 +1,4 @@
-package cn.com.gary.dataredis;
+package cn.com.gary.dataredis.cluster;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
