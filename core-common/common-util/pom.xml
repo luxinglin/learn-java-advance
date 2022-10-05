@@ -20,7 +20,7 @@
 
         <core-common-pojo.version>1.0-SNAPSHOT</core-common-pojo.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson-annotations.verion>2.9.10</jackson-annotations.verion>
+        <jackson-annotations.verion>2.12.6.1</jackson-annotations.verion>
         <spring-context.version>4.3.9.RELEASE</spring-context.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
