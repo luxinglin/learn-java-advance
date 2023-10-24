@@ -16,6 +16,7 @@
         <module>spring-boot-data-redis</module>
         <module>spring-boot-data-cluster-redis</module>
         <module>spring-boot-data-sentinel-redis</module>
+        <module>spring-boot-multi-profiles</module>
     </modules>
 
     <properties>
